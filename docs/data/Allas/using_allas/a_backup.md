@@ -9,8 +9,7 @@ removed by an authenticated user with only one command and after that all the ba
  `a_backup` automatically creates a project specific backup 
 repository to the Allas storage service at CSC and uses that for making cumulative backups.
 
-Unlike data upload tools like `a_put`, `s3cmd` or `rclone`, the tool `a_backup` (or actually the restic program behind) stores the imported 
-data as collection hash.
+Unlike data upload tools like `a_put`, `s3cmd put` or `rclone copy`, the tool `a_backup` (or actually the restic program behind) stores the imported data as collection hash.
 
 
 In order to use this tool, you must first open connection to Allas storage service with
@@ -19,12 +18,14 @@ command:
 source $allas_conf_path
 ```
 
-The connection remains open for three hours.
+**Note:** The connection remains open for three hours.
+
+&nbsp;
 
 
 **BACKUP OPERATIONS**
 
-a_backup can be used for the following five operations:
+a_backup can be used for the following six operations:
 
  - `a_backup <file_name>`  or `a_backup add <file_name>`   
  	Adds a new backup version (snapshot) of the given file or directory to the backup repository.
@@ -44,4 +45,7 @@ a_backup can be used for the following five operations:
 
  - `a_backup delete <snapshot_id>`  
  	Deletes a snapshot from the backup repository.
+
+
+&nbsp;
 
