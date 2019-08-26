@@ -11,9 +11,10 @@ In the billing scheme the BU consumption rate of a compute job depends linearly 
 and the total BU consumption per hour is the sum of the above terms. Thus a job uses BUs as follows:
 > Total BUs = ( NCores * 1 + MemGiBs * 0.1 + NGPUs * 60 ) * Walltime hours
 
-We plan to introduce similar billing for the fast local NVME disks.
-
 ### Storage billing
+#### Fast local (NVMe) disk billing
+Using the NVMe disks consumes **0.006** BUs per GiB per hour.
+
 #### Lustre/work disk billing
 The default 1 TiB work/project disk quota is free. Increased quota is charged as follows:
 * 1 TiB consumes **50 000** BUs per year.
