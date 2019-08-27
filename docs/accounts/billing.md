@@ -20,6 +20,7 @@ The default 1 TiB work/project disk quota is free. Increased quota is charged as
 * 1 TiB consumes **50 000** BUs per year.
 
 #### Allas object storage billing
+Allas billing will be specified when the service is launched.
 
 ### Estimating the billing units
 To make it easier for customers to estimate how much billing units they need, there is a calculator available at https://research.csc.fi/billing-and-monitoring for Taito and cloud. For Puhti there is an Excel workbook which a user can download.
