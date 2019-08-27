@@ -286,7 +286,7 @@ OS_PROJECT_ID=<os_project_id>
 Save the full path to the Swift object (Replace the part *"os_project_id"* with your OS_PROJECT_ID):
 
 ```bash
-$MYURL=https://object.pouta.csc.fi/swift/v1/AUTH_"os_project_id"/my_fishbucket/bigfish.jpg
+$ MYURL=https://object.pouta.csc.fi/swift/v1/AUTH_"os_project_id"/my_fishbucket/bigfish.jpg
 ```
 
 
