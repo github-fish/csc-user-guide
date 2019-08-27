@@ -66,7 +66,7 @@ You can find your ec2 credentials by issuing:
 ```bash
 $ openstack ec2 credentials list
 ```
-Once you have your ec2 credentials you will need to use the _Access_ and _Secret_ in the next command. The interactive command ```s3cmd --configure ``` is good for first-time use. It creates a _$HOME/.s3cfg_ file, adds access keys and ids from above, points to pouta object store and adds an encryption key. It is probably a good idea to create a password when you get to the option. 
+Once you have your ec2 credentials you will need to use the _Access_ and _Secret_ in the next command. The interactive command ```s3cmd --configure ``` is good for first-time use. It creates a _$HOME/.s3cfg_ file, adds access keys and ids from above, points to Pouta object storage and adds an encryption key. It is probably a good idea to create a password when you get to the option.
  
 Alternatively, you can create a working file by adding your Access and Secret to the following oneliner:
 ```bash
@@ -96,12 +96,12 @@ $ s3cmd put my_file s3://my_bucket
 
 ## List objects and buckets
 
-You can list buckets belonging to the project with command:
+You can list all the buckets belonging to the project with command:
 ```bash
 $ s3cmd ls
 ```
 
-And objects belonging to a bucket:
+And all the objects belonging to a bucket with:
 ```bash
 $ s3cmd ls s3://my_bucket
 ```
@@ -126,7 +126,7 @@ $ s3cmd get s3://my_bucket/my_file new_file_name
 ```
 The parameter *new_file_name* is optional - it defines a new name for the downloaded file in case you want to rename it.
 
-With md5sum you can check that the file has not been changed or corrupted:
+With command `md5sum` you can check that the file has not been changed or corrupted:
 ```bash
 $ md5sum my_file new_file_name
    39bcb6992e461b269b95b3bda303addf  my_file
@@ -181,7 +181,7 @@ $ s3cmd rb s3://my_bucket
 
 ## s3cmd and public objects
 
-You can make a bucket public with command:
+An object _salmon.jpg_ belonging to a pseudofolder _fishes_ can be made public with command:
 ```bash
 $ s3cmd put fishes/salmon.jpg s3://my_fishbucket/fishes/salmon.jpg -P
 Public URL of the object is: http://object.pouta.csc.fi/my_fishbucket/fishes/salmon.jpg
@@ -206,7 +206,7 @@ This command needs to use the UUID (_universally unique identifier_) of the proj
 The ID can be found at <a href="https://pouta.csc.fi/dashboard/identity/" target="_blank">https://pouta.csc.fi/dashboard/identity/</a> or with command
 ```openstack project show $project_name ```. You need access (membership) to the project to find out the UUID.
  
-In the Pouta Web UI you only see buckets that the members of your project have created. If your project has been granted project read access to a bucket with the s3cmd client, the following applies to other members of your project:
+In the Pouta Web UI you can see only buckets that the members of your project have created. If your project has been granted project read access to a bucket with the s3cmd client, the following applies to the members of your project:
  
  * Can list and fetch files with the python-swiftclient 
  * "_swift list_" does <u>not</u> display the bucket
@@ -216,15 +216,17 @@ Granting read access:
 ```bash
 $ s3cmd setacl --acl-grant=read:$other_project_uuid s3://my_fishbucket
 ```
-Revoking read access:
-```bash
-$ s3cmd setacl --acl-revoke=read:$other_project_uuid s3://my_fishbucket
-```
+
 View permissions:
 ```bash
 $ s3cmd info s3://my_fishbucket|grep -i acl
    ACL:       other_project_uuid: READ
    ACL:       my_project_uuid: FULL_CONTROL
+```
+
+Revoking read access:
+```bash
+$ s3cmd setacl --acl-revoke=read:$other_project_uuid s3://my_fishbucket
 ```
 
 &nbsp;
@@ -238,7 +240,7 @@ $ s3cmd signurl s3://bigbucket/bigfish +3600
 http://bigbucket.object.pouta.csc.fi/bigfish?AWSAccessKeyId=0a69a52ea4bc3a36839bc1e&Expires=1565951124&Signature=YEIjLFCaexvJ7rhusMV7E%3D
 ```
 !!! note 
-	The given URL does not work like that, but fortunately it can be fixed easily: just change _http_ to _https_ and move the _bucketname_ from the beginning after _object.pouta.csc.fi/_ and add "/" between the bucketname and the objectname:
+	The given URL does not work like that, but fortunately it can be fixed easily: just change _http_ to _https_ and move the _bucketname_ from the beginning after _object.pouta.csc.fi/_ and add "/" after it:
 	http<span style="background-color: #A4D1F9">s</span>://object.pouta.csc.fi/<span style="background-color: #A4D1F9">bigbucket/</span>bigfish?AWSAccessKey
 	Id=0a69a52ea4bc3a36839bc1e&Expires=1565951124&Signature=YEIjLFCaexvJ7rhusMV7E%3D
 
