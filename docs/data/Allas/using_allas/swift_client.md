@@ -2,12 +2,14 @@
 # Swift client
 
 !!! note
-	If you use Allas from a Supercomputer, all the required packages and software are already installed and you can skip the installation and openrc downloading below. What you have to do is to run the command 
+	If you use Allas from a Supercomputer, all the required packages and software are already installed and you can skip the installation section and openrc downloading below. What you have to do is to run the command 
 	`$ source /appl/opt/allas_conf`
 	to authenticate to a project in Allas.
 
 
-For basic operations we recommend using the [OpenStack command-line client](../../../cloud/pouta/install-client.md#overview-of-openstack-command-line-tools){:target="_blank"}. It can access the object storage, but it is limited in its features. The more advanced *Swift command-line client* is used in the examples. The instructions for the installation of the Swift command-line client can be found from [pouta/install-client](../../../cloud/pouta/install-client.md){:target="_blank"}. In the last section [Configure your terminal environment for OpenStack](../../../cloud/pouta/install-client.md#configure-your-terminal-environment-for-openstack){:target="_blank"} is guidance for downloading a RC file.
+This chapter gives guidance for data management in Allas with the advanced _Swift client_. If you believe that basic operations are enough to fulfill your need, we recommend either the [OpenStack command-line client](../../../cloud/pouta/install-client.md#overview-of-openstack-command-line-tools){:target="_blank"} or [Web client](./web_client.md){:target="_blank"}. 
+
+The instructions for the installation of the Swift command-line client can be found from [pouta/install-client](../../../cloud/pouta/install-client.md){:target="_blank"}. In the last section [Configure your terminal environment for OpenStack](../../../cloud/pouta/install-client.md#configure-your-terminal-environment-for-openstack){:target="_blank"} is guidance for downloading a RC file.
 
 Once you have the RC file, you can add the environment variables with the following command:
 
@@ -56,7 +58,7 @@ Adding a file to a existing bucket can be done with the same command:
 $ swift upload <old_bucket_name> <file_name>
 ```
 **Note:** This might cause a warning  "_409 Conflict: BucketAlreadyExists_", but that does not necessarily mean that the upload failed. 
-If the next line shows the file name, it was successfully uploaded to the already existing bucket.
+If the next line displays the file name, it was successfully uploaded to the already existing bucket.
 
 ```bash
 $ swift upload my_fishbucket my_fish.jpg
@@ -68,7 +70,7 @@ my_fish.jpg
 
 ## List objects and buckets
 
-To list the buckets belonging to the project use command:
+To list all the buckets belonging to the project use command:
 ```bash
 $ swift list
 my_fishbucket
@@ -94,7 +96,7 @@ If you want to rename the object as you download it, you can add <i>-o new_name<
 ```bash
 $ swift download <bucket_name> <file_name> -o <new_name>
 ```
-You can also download a whole bucket at once:
+Additionally, you can download a whole bucket at once:
 ```bash
 $ swift download <bucket_name>
 ```
@@ -159,12 +161,12 @@ Container u'old_fishbucket' not found
 
 ## Download or delete whole projects
 
-You can download whole project with command:
+You can download the whole project with command:
 ```bash
 $ swift download --all
 ```
 
-Deleting whole project is done with:
+Deleting the whole project is done with:
 ```bash
 $ swift delete --all
 ```
@@ -185,7 +187,7 @@ $ swift upload my_bigfishes/pictures bass.png
 pictures/bass.png
 ```
 
-The below example uploads a file called _salmon.jpg_ into a pseudo-folder called _fishes_ which is inside a bucket called _my_fishbucket_. After that the file is downloaded.
+The example below uploads a file called _salmon.jpg_ into a pseudo-folder called _fishes_ which is inside a bucket called _my_fishbucket_. After that the file is downloaded.
 ```bash
 $ md5sum salmon.jpg
 22e44aa2b856e4df892b43c63d15138a  salmon.jpg
@@ -251,7 +253,7 @@ Meta S3Cmd-Attrs: atime:1516788402/ctime:1513681753/gid:$LOCALGID/gname:$LOCALGR
       X-Trans-Id: tx0000000000000000001d6-q-q-cpouta-production-kaj
 ```
 
-Note that the above file was uploaded with the _s3cmd client_ and it added the extra _S3Cmd-Attrs_ metadata compared to one uploaded with Swift or S3. _ETag_ is the _hash_ when viewing the file details in the Pouta dashboard.
+Note that the above file was uploaded with the _s3cmd client_ and therefore there is a extra metadata _S3Cmd-Attrs_ compared to one uploaded with Swift or S3. _ETag_ is the _hash_ when viewing the file details in the Pouta dashboard.
 
 Removing a metadata field (in this case _Temp-URL-Key_, which is discussed in more detail in the next section) is done with command:
 ```bash
@@ -262,14 +264,12 @@ $ swift post -m "Temp-URL-Key:"
 <a name="temp_urls"></a>  
 
 ## Temp URLs
-
-_Ceph_ documentation of Temp URLs: [http://docs.ceph.com/docs/luminous/radosgw/swift/tempurl/](http://docs.ceph.com/docs/luminous/radosgw/swift/tempurl/){:target="_blank"}
  
 If you want to share an object from a private (or public) bucket with somebody, you can create a temporary URL. This can be useful for a homepage where you want to share an object but not the whole bucket and only for a limited period of time. This can also be useful if you want to use a private object in a batch job on Puhti or Taito.
  
-**Note:** Everyone who has access to the temporary URL has access to the object. While it is possible to add Meta Temp-URL-Key to a bucket or object, the Temp URL command can only be used in a project wide scope (see [https://docs.openstack.org/python-swiftclient/latest/cli/index.html#swift-tempurl](https://docs.openstack.org/python-swiftclient/latest/cli/index.html#swift-tempurl){:target="_blank"}).
+**Note:** Everyone who has access to the temporary URL has access to the object. While it is possible to add Meta Temp-URL-Key to a bucket or object, the Temp URL command can only be used in a project wide scope (see [OpenStack documentation of temp URLs](https://docs.openstack.org/python-swiftclient/latest/cli/index.html#swift-tempurl){:target="_blank"}).
  
-Create a random key
+Create a random key:
 ```bash
 $ RANDOMKEY="my-super-secret-key"
 ```
@@ -277,16 +277,18 @@ Post a Temp-URL-Key to the whole project. **Please note:** If someone changes th
 ```bash
 $ swift post -m "Temp-URL-Key:$RANDOMKEY" 
 ```
-To get your <i>OS_PROJECT_ID</i> use command _env_:
+To get your <i>OS_PROJECT_ID</i> use command `env`:
 ```bash
 $ env | grep -i project
 OS_PROJECT_NAME=project_123456
 OS_PROJECT_ID=<os_project_id>
 ```
-Save the full path to the Swift object (Replace the part *os_project_id* with your OS_PROJECT_ID):
+Save the full path to the Swift object (Replace the part *"os_project_id"* with your OS_PROJECT_ID):
+
 ```bash
-$ MYURL=https://object.pouta.csc.fi/swift/v1/AUTH_os_project_id/my_fishbucket/bigfish.jpg
+$MYURL=https://object.pouta.csc.fi/swift/v1/AUTH_"os_project_id"/my_fishbucket/bigfish.jpg
 ```
+
 
 Create a Temp-URL-Key valid for 86400 seconds (24 hours):
 ```bash
@@ -298,13 +300,13 @@ Use the previously created Temp URL to download the object:
 ```bash
 $ curl https://object.pouta.csc.fi/swift/v1/AUTH_6e3f5db8e08940f481744240af8701e5/my_fishbucket/bigfish.jpg?temp_url_sig=9a118ddda22c83c7a6cd49c013389f0507c007ca&temp_url_expires=1514648675> bigfish.jpg
 ```
-You may set a second key by adding another metadata entry with title "Temp-URL-Key-2".
+You may set a second key by adding another metadata entry with title "*Temp-URL-Key-2*".
 
 &nbsp;
 
 ## Giving another project read and write access to a bucket
 
-You can give another project read and write rights to a bucket. Giving project _project1_ read rights to bucket <i>my_fishbucket</i> can be done with command:
+You can give another project read and write rights to a bucket. Giving project _project1_ read right to bucket <i>my_fishbucket</i> is done with command:
 ```bash
 $ swift post my_fishbucket -r "project1:*"
 ```
@@ -314,14 +316,14 @@ $ swift post my_fishbucket -w "project1:*"
 ```
 The sign _*_ after the project name defines that all the project members in the project gets the rights.
 
-You can also give read and write access only to certain members of another project:
+Alternatively, you can give read and write access only to certain members of another project:
 ```bash
 $ swift post my_fishbucket -r "project2:member1"
 $ swift post my_fishbucket -w \
    "project3:member1,project3:member2,project5:member1,project6:*"
 ```
 
-**Please note:** If you have allowed access for specific projects, making the shared project public and private again will remove the previous access permissions on metadata.
+**Please note:** If you have allowed access for specific projects, making the shared project public and private again will remove the previous access permissions.
 
 In case you allow _-w_ access for another project, the members of the other project can upload files to your bucket and remove your files. 
 However, you have not access to those uploaded files until either you or the sender shares the bucket with your project:
@@ -348,6 +350,7 @@ According to [https://docs.openstack.org/python-swiftclient/latest/cli/index.htm
 
 "_Swift has a single object size limit of 5GiB. In order to upload files larger than this, we must create a large object that consists of smaller segments._"
 
+Trying to upload a large file:
 ```bash
 $ md5sum /tmp/6GB.zero
 9e6a77a2d5650b2e2a710a08e9e61a81  /tmp/6GB.zero
@@ -358,7 +361,7 @@ Size: 6424625152      Blocks: 12548104   IO Block: 4096   regular file
 $ swift upload my_bigfishes /tmp/6GB.zero
 Object PUT failed: https://object.pouta.csc.fi:443/swift/v1/my_bigfishes/tmp/6GB.zero 400 Bad Request   EntityTooLarge
 ```
-So instead you can do:
+It failed with message `EntityTooLarge`, so instead you can do:
 ```bash
 $ swift upload my_bigfishes --use-slo --segment-size 1G /tmp/6GB.zero
 tmp/6GB.zero segment 3
