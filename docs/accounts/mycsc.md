@@ -5,7 +5,7 @@ The customer portal my.csc.fi replaces the old Customer Portal sui.csc.fi and is
 
 The authentication to my.csc.fi is done with your own higher education institute’s ID through the Haka User Authentication System or with separate CSC IDs. Virtu authentication will be added as soon as possible. 
 
-Through my.csc.fi you can 
+Through my.csc.fi you can e.g.
 * register as a CSC customer, 
 * manage your personal information,
 * create projects, 
