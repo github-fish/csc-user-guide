@@ -1,9 +1,11 @@
-## my.csc.fi portal
-The customer portal my.csc.fi replaces the old Customer Portal sui.csc.fi and is the gateway to CSC’s services such as supercomputers, software, cloud services and data storage. The old portal sui.csc.fi will be shut down by the end of the year.
+# MyCSC
 
-The authentication to my.csc.fi is done with your own higher education institute’s ID through the Haka User Authentication System or with separate CSC IDs. Virtu authentication will be added as soon as possible. 
+The customer portal [MyCSC](https://my.csc.fi) replaces the old Customer Portal [SUI](https://sui.csc.fi) and is the gateway to CSC’s services such as supercomputers, software, cloud services and data storage. The old portal sui.csc.fi will be shut down by the end of the year.
 
-Through my.csc.fi you can e.g.
+The authentication to MyCSC is done with your own higher education institute’s ID through the Haka User Authentication System or with separate CSC IDs. Virtu authentication will be added as soon as possible. 
+
+Through MyCSC ([https://my.csc.fi](https://my.csc.fi)) you can e.g.
+
 * register as a CSC customer, 
 * manage your personal information,
 * create projects, 
@@ -14,4 +16,4 @@ Through my.csc.fi you can e.g.
 
 For more information, please see the following sections.
 
-Please notice that not all features of sui.csc.fi are not available via my.csc.fi. The Access to IDA Research Data Storage are still applied via sui.csc.fi portal (https://www.fairdata.fi/en/ida/becoming-an-ida-user/) until this feature is implemented to my.csc.fi portal. The rights to access the Language Bank’s resources are applied from the Language Bank Rights Service. (https://www.kielipankki.fi/access/)
+Please notice that not all features of SUI are not available via MyCSC. The Access to [IDA Research Data Storage](https://www.fairdata.fi/en/ida/becoming-an-ida-user/) are still applied via sui.csc.fi portal until this feature is implemented to my.csc.fi portal. The rights to access the Language Bank’s resources are applied from the [Language Bank Rights Service](https://www.kielipankki.fi/access/).
