@@ -1,6 +1,4 @@
 ## my.csc.fi portal
-User registration and project administration is done through the my.csc.fi portal.
-
 The customer portal my.csc.fi replaces the old Customer Portal sui.csc.fi and is the gateway to CSC’s services such as supercomputers, software, cloud services and data storage. The old portal sui.csc.fi will be shut down by the end of the year.
 
 The authentication to my.csc.fi is done with your own higher education institute’s ID through the Haka User Authentication System or with separate CSC IDs. Virtu authentication will be added as soon as possible. 
