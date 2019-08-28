@@ -5,6 +5,7 @@ edit_uri: "https://github.com/CSCfi/csc-user-guide/edit/develop/docs"
 nav: 
   - Home: index.md
   - Accounts:
+     - MyCSC: accounts/mycsc.md
      - Creating new user account: accounts/creating-new-user-account.md
      - Changing password: accounts/changing-password.md
      - Managing user information: accounts/managing-user-information.md
