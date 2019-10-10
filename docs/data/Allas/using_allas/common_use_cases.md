@@ -10,13 +10,11 @@ To use the computing environment in Taito or Puhti, you need to use the open-sou
 
 
 
-* **Copying data from object storage to Lustre (stage-in):** You need to copy data to the parallel file system Lustre before computing. To download objects from Allas we recommend [a_get](./a_commands.md#a-get-retrieves-the-stored-data) or [swift download](./swift_client.md#download-objects-and-buckets).
+* **Copying data from object storage to Lustre (stage-in):** You need to copy data to the parallel file system Lustre before computing. To download objects from Allas we recommend [a-get](./a_commands.md#a-get-retrieves-the-stored-data), [rclone copy](./rclone.md) or [swift download](./swift_client.md#download-objects-and-buckets).
 
-* **Copying data from Lustre to object storage (stage-out):** After computation you should copy the files to Allas. To upload the data to Allas we recommend [a_put](./a_commands.md#a-put-uploads-data-to-allas) or [swift upload](./swift_client.md#create-buckets-and-upload-objects). 
+* **Copying data from Lustre to object storage (stage-out):** After computation you should copy the files to Allas. To upload the data to Allas we recommend [a-put](./a_commands.md#a-put-uploads-data-to-allas), [rclone copy](./rclone.md) or [swift upload](./swift_client.md#create-buckets-and-upload-objects). 
 
-!!! note
-    We recommend using the Swift protocol on Allas. It is important not to mix the usage of Swift and S3, these protocols are not completely compatitable.
-
+All the methods above use Swift protocol on Allas. It is important not to mix the usage of Swift and S3, these protocols are not completely compatitable.
 
 
 
@@ -35,7 +33,7 @@ The data can be accessed and shared in several different ways:
 * **Access Control Lists:** Access Control Lists (ACLs) work on buckets, not on objects. With ACLs you can share your data in a limited fashion to other projects. You can e.g. enable authenticated read access to your datasets to a collaboration project.
 
  
-* **Public:** You can also have ACLs granting public read access to the data, which is useful for e.g. sharing public scientific results or public datasets.
+* **Public:** You can also have ACLs granting public read access to the data, which is useful for e.g. sharing public scientific results or public datasets. 
 
  
 * **Temp URLs:** A temp URL is a unique URL to access an object. These URLs are time-limited and the duration can be determined. Anyone with the URL can access the object, but the URL is not feasible to just guess. This is a good way to somewhat securely share data to a limited audience, who do not need to have their own Allas accounts. Temp URLs are created per object, not per bucket. You can create temp URLs with [Swift](./swift_client.md#temp-urls) or [S3](./s3_client.md#temporary-urls).
