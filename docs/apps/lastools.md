@@ -6,9 +6,13 @@
 
 ### Using LAStools
 
-LAStools is included in the [geoconda](../apps/geoconda.md) module and can be loaded with
+LAStools is included in the [lidarconda](../apps/lidarconda.md) and [geoconda](../apps/geoconda.md) modules and can be loaded with
 
 `module load geoconda`
+
+or 
+
+`module load gcc/9.1.0 lidarconda`
 
 You can test LAStools loaded succesfully with
 
