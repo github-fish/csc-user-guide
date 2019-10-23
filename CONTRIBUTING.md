@@ -102,7 +102,7 @@ root of the project directory.
 mkdocs build
 mkdocs serve
 ```
-
+Note: on cPouta VM use * mkdocs serve  -a 0.0.0.0:8000 *  instead 
 This will start a web server on your computer listening on port
 8000. Point your web server to [localhost:8000](http://localhost:8000)
 to get a preview of the documentation.
