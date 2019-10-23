@@ -453,9 +453,7 @@ span.input-group-btn {
   color: white;
 }
 
-.wm-toc-li:hover {
-  background-color: #e0e0e0;
-}
+/* .wm-toc-li:hover { background-color: #e0e0e0; } */
 
 .wm-toc-li.wm-current a {
   color: black;
