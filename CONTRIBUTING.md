@@ -21,17 +21,16 @@ cloned.
 cd csc-user-guide
 ```
 
-## Making changes
+## Making changes 
+
+Changes to the 'master' branch are only made via pull requests. For details,
+see below.
 
 The csc-user-guide repository uses the 'master' as the default
 branch. When you have cloned the repository, this branch is what you
 see. If you are unsure which branch you are in, you can run `git
 branch`. The active branch can be changed with the `git checkout`
 command.
-
-## Making changes directly to 'master'
-
-This is not recommended.
 
 ## Making changes using pull requests in the web GUI
 
@@ -64,9 +63,11 @@ git push origin your_branch_name
 Now you can ask a person to review and merge the changes. One can request
 reviewers in the Github web interface.
 
+Once pushed, an automatic preview site of a branch will be visible at [csc-guide-preview.rahtiapp.fi/origin/](https://csc-guide-preview.rahtiapp.fi/origin/).
+
 After the PR has been merged, the branch on github can be deleted.
 
-Tip 1. Git uses [Vim](https://www.vim.org) as the default editor for commit
+**Tip 1.** Git uses [Vim](https://www.vim.org) as the default editor for commit
 messages. It is possible to change the default editor, but below are
 the most important commands if you do not want to do it right now.
 
@@ -76,10 +77,10 @@ Esc  Exit insert mode
 :wq  Save and exit
 ```
 
-Tip 2. See instructions on [how to write a good Git commit
+**Tip 2.** See instructions on [how to write a good Git commit
 message](https://chris.beams.io/posts/git-commit/).
 
-Tip 3. If pushing fails, the most probable reason is that somebody
+**Tip 3.** If pushing fails, the most probable reason is that somebody
 else has made edits while you were editing. This situation is called a
 conflict. (To be written: How to resolve conflicts?)
 
